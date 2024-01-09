@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 4012558298572244723}
   - component: {fileID: 581473386684119293}
   - component: {fileID: 7476179913211053699}
+  - component: {fileID: 2762377289764583311}
   m_Layer: 0
   m_Name: HpBar_canvas
   m_TagString: Untagged
@@ -388,7 +389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.2031, y: 3.88}
+  m_AnchoredPosition: {x: 0.203125, y: 3.880005}
   m_SizeDelta: {x: 1.004, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4012558298572244723
@@ -454,3 +455,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2762377289764583311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409088041438030492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36275e0cf3460fb4897f7915f120c856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

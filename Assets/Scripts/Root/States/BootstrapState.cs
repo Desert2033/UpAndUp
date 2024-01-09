@@ -44,6 +44,7 @@ public class BootstrapState : IState
 
         staticDataService.LoadHeroLevels();
         staticDataService.LoadEnemyRangeLevels();
+        staticDataService.LoadSpawnData();
 
         _services.RegisterSingle<IStaticDataService>(staticDataService);
     }

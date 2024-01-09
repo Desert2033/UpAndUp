@@ -7,8 +7,9 @@ public class EnemyDeath : MonoBehaviour
 
     [SerializeField] private EnemyRangeAnimator _enemyAnimator;
     [SerializeField] private EnemyRangeAttack _enemyAttack;
-    [SerializeField] private EnemyRangeObserver _enemyObserver;
     [SerializeField] private EnemyHealth _enemyHealth;
+    [SerializeField] private TakeDamageAnimation _damageAnimation;
+    [SerializeField] private GameObject _hpBar;
 
     private IGameFactory _gameFactory;
 
@@ -37,14 +38,15 @@ public class EnemyDeath : MonoBehaviour
     public void Dead()
     {
         _enemyAttack.enabled = false;
-        _enemyObserver.enabled = false;
+        _hpBar.SetActive(false);
 
         StartCoroutine(PlayAnimationAndDestroy());
     }
 
     private IEnumerator PlayAnimationAndDestroy()
     {
-        _enemyAnimator.StartDie();
+        _damageAnimation.PlayDeath();
+       _enemyAnimator.StartDie();
         yield return new WaitForSeconds(DurationUntilDestroy);
 
         _enemyAnimator.StartDie();

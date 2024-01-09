@@ -3,16 +3,17 @@ using UnityEngine;
 
 public class HeroMoveSides : MonoBehaviour
 {
-    private const float DurationForMoveSides = 0.3f;
+    private const float DurationForMoveSides = 0.15f;
     private const float AngleRotationY = 140f;
 
     [SerializeField] private HeroAnimator _heroAnimator;
 
     public bool IsMoving { get; private set; } = false;
 
-    public void Move(Directions direction, float blockPositionX)
+    public void Move(Directions direction, Vector3 blockPosition)
     {
-        Vector3 newPosition = new Vector3(blockPositionX, 0, 0);
+        Vector3 newPosition = new Vector3(blockPosition.x, 0, 0);
+        HeroExtraDown(blockPosition);
 
         if (direction == Directions.Left)
         {
@@ -24,9 +25,15 @@ public class HeroMoveSides : MonoBehaviour
         }
     }
 
+    private void HeroExtraDown(Vector3 blockPosition)
+    {
+        float offsetFromBlock = 0.9f;
+        transform.position = new Vector3(transform.position.x, blockPosition.y + offsetFromBlock, transform.position.z);
+    }
+
     private void MoveLeft(Vector3 position)
     {
-        transform.eulerAngles = new Vector3(0, -AngleRotationY, 0);
+        transform.rotation = Quaternion.Euler(0, -AngleRotationY, 0);
         StartCoroutine(Move(position, DurationForMoveSides));
     }
 

@@ -42,12 +42,13 @@ public class GameLoopState : IState
             reactionOfHeroDeath.OnHeroDie();
         }
     }
+
     private void ShowRestartMenu()
     {
         Button buttonRestart = _gameFactory.CreateRestartMenu().transform.GetChild(1).GetComponent<Button>();
         buttonRestart.onClick.AddListener(RestartGame);
     }
 
-    private void RestartGame() => 
+    private void RestartGame() =>
         _stateMachine.Enter<LoadProgressState>();
 }

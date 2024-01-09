@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Level 4
   m_EditorClassIdentifier: 
   Level: 4
-  Hp: 200
-  Damage: 150
+  Hp: 5
+  Damage: 4
   ColorArmor: {r: 0.7294118, g: 0.7490196, b: 0.74509805, a: 0}
   WearArmorLegs: 1
   WearArmorHands: 1

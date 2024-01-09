@@ -5,7 +5,7 @@ public class TNTAttack : MonoBehaviour
     private const string HeroTag = "Player";
 
     [SerializeField] private TNTDeath _death;
-    [SerializeField] private int _damage = 1;
+    [SerializeField] private int _damage = 5;
 
     private BoxCollider _collider;
 

@@ -4,9 +4,8 @@ using System;
 
 public class EnemyHealth : MonoBehaviour, IHealth
 {
-    [SerializeField] private SkinnedMeshRenderer _meshRenderer;
+    [SerializeField] private TakeDamageAnimation _damageAnimation;
 
-    private float _duration = 0.2f;
     private float _maxHP = 5;
     private float _currentHP = 0;
 
@@ -36,22 +35,14 @@ public class EnemyHealth : MonoBehaviour, IHealth
 
     public void TakeDamage(float damage)
     {
-        StartCoroutine(TakeDamageAnimation());
         CurrentHP -= damage;
+
+        _damageAnimation.PlayTakeDamage();
 
         if (CurrentHP <= 0)
         {
             OnHpRunOut?.Invoke();
             return;
         }
-    }
-
-    public IEnumerator TakeDamageAnimation()
-    {
-        _meshRenderer.material.color = Color.red;
-
-        yield return new WaitForSeconds(_duration);
-
-        _meshRenderer.material.color = Color.white;
     }
 }

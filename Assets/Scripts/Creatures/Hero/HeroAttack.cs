@@ -84,7 +84,7 @@ public class HeroAttack : MonoBehaviour, IReactionOfHeroDeath
             _gameFactory.CreateBullet(_bowAnimator.transform.position,
                 enemyTransform.position - transform.position,
                 _damage,
-                AssetPath.PathHeroBullet,
+                AssetPath.PathBullet,
                 enemyTransform);
         }
     }

@@ -6,6 +6,7 @@ public class StaticDataService : IStaticDataService
 {
     private List<HeroLevelData> _heroLevelsData;
     private List<EnemyRangeData> _enemyRangeLevelsData;
+    private List<SpawnerData> _spawnerData;
 
     public void LoadEnemyRangeLevels()
     {
@@ -23,9 +24,15 @@ public class StaticDataService : IStaticDataService
             .ToList();
     }
 
+    public void LoadSpawnData() => 
+        _spawnerData = Resources.LoadAll<SpawnerData>("StaticData/Spawners").ToList();
+
     public HeroLevelData ForHeroLevel(int level) =>
         _heroLevelsData[level - 1];
 
     public EnemyRangeData ForEnemyRangeByCountBlocks(uint countBlocks) =>
         _enemyRangeLevelsData.Find(data => data.MaxBlocks > countBlocks && data.MinBlocks <= countBlocks);
+
+    public SpawnerData ForSpawnDataByCountBlocks(uint countBlocks) =>
+        _spawnerData.Find(data => data.MaxBlocks > countBlocks && data.MinBlocks <= countBlocks);
 }

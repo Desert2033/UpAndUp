@@ -836,10 +836,13 @@ GameObject:
   - component: {fileID: -5034255438096353172}
   - component: {fileID: 5575692190890192952}
   - component: {fileID: 1162623276390257104}
-  - component: {fileID: 499208892843588742}
+  - component: {fileID: 2329048603832706060}
   - component: {fileID: 6150239932959210317}
   - component: {fileID: 6638062060410102863}
   - component: {fileID: 4827100764100306363}
+  - component: {fileID: -1184374120876381378}
+  - component: {fileID: 8504773116115578808}
+  - component: {fileID: -8502549133331849366}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -915,8 +918,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.77642614, y: 3.1298258, z: 0.8721459}
-  m_Center: {x: 0.0041148067, y: 1.5922092, z: 0.003760457}
+  m_Size: {x: 0.77642614, y: 2.3917599, z: 0.8721459}
+  m_Center: {x: 0.0041148067, y: 1.2231612, z: 0.003760457}
 --- !u!95 &6911172877399605870
 Animator:
   serializedVersion: 5
@@ -1027,8 +1030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9ba11b90c12154a96079977cdf307b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAnimation: {fileID: 499208892843588742}
---- !u!114 &499208892843588742
+  _damageAnimation: {fileID: 2329048603832706060}
+--- !u!114 &2329048603832706060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1037,15 +1040,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4581385321040277026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f922db734541cf245b447e162653fe02, type: 3}
+  m_Script: {fileID: 11500000, guid: a850a2f6c585dc04cb1fc20a617fcea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageHead: {fileID: 7084728303708095745}
-  _damageBody: {fileID: 1877462649127351330}
-  _damageRightHand: {fileID: 2096037237837745972}
-  _damageLeftHand: {fileID: 7050734854925975494}
-  _damageRightLeg: {fileID: 998726166036816167}
-  _damageLeftLeg: {fileID: 4677294916157879209}
+  _damageObjects:
+  - {fileID: 1877462649127351330}
+  - {fileID: 7084728303708095745}
+  - {fileID: 2096037237837745972}
+  - {fileID: 7050734854925975494}
+  - {fileID: 998726166036816167}
+  - {fileID: 4677294916157879209}
 --- !u!114 &6150239932959210317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,7 +1063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _heroHealth: {fileID: 1162623276390257104}
-  _heroDamageAnimation: {fileID: 499208892843588742}
+  _heroDamageAnimation: {fileID: 2329048603832706060}
   _heroAnimator: {fileID: 3804533884252733277}
   _boxCollider: {fileID: 4906077717370379094}
 --- !u!114 &6638062060410102863
@@ -1101,6 +1105,45 @@ MonoBehaviour:
   _legLeft: {fileID: 1877450891742621361}
   _heroHealth: {fileID: 1162623276390257104}
   _heroAttack: {fileID: 6638062060410102863}
+  _expBank: {fileID: -1184374120876381378}
+--- !u!114 &-1184374120876381378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581385321040277026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca725868a776df548966298583f10f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8504773116115578808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581385321040277026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2e5bf10ea8f394cb8e27a0c8aab267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8502549133331849366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581385321040277026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24949f733a9254344ad2d21604e910e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healBank: {fileID: 8504773116115578808}
+  _heroHealth: {fileID: 1162623276390257104}
 --- !u!1 &4677294916157879209
 GameObject:
   m_ObjectHideFlags: 0

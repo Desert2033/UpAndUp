@@ -6,7 +6,6 @@ public class HeroJump : MonoBehaviour
 {
     private const float DistanceJump = 1.3f;
     private const float DurationForJump = 0.2f;
-    private const float DurationForDown = 0.2f;
 
     [SerializeField] private AnimationCurve _curveY;
 
@@ -35,8 +34,6 @@ public class HeroJump : MonoBehaviour
             
             yield return null;
         }
-
-        yield return new WaitForSeconds(DurationForDown);
 
         IsMovingUp = false;
     }

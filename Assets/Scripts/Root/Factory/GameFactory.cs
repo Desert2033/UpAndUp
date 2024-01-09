@@ -36,8 +36,28 @@ public class GameFactory : IGameFactory
     public GameObject CreateBlockEarth(Vector3 at) =>
         _assets.Instantiate(AssetPath.PathBlockEarth, at);
 
+    public GameObject CreateExperience(Vector3 at) =>
+        _assets.Instantiate(AssetPath.PathExperience, at, Quaternion.Euler(-20, 90, 0));
+
+    public GameObject CreateHeal(Vector3 at) =>
+        _assets.Instantiate(AssetPath.PathHeal, at);
+
     public GameObject CreateTNT(Vector3 at) =>
         _assets.Instantiate(AssetPath.PathTNT, at);
+
+    public GameObject CreateTNTMoveEasy(Vector3 at) => 
+        _assets.Instantiate(AssetPath.PathTNTMoveEasy, at);
+
+    public GameObject CreateTNTMoveHard(Vector3 at) => 
+        _assets.Instantiate(AssetPath.PathTNTMoveHard, at);
+
+    public GameObject CreateTNTMoveDown(Vector3 at, CameraBorder cameraBorder)
+    {
+        GameObject tnt = _assets.Instantiate(AssetPath.PathTNTMoveDown, at);
+        tnt.GetComponentInChildren<TNTDown>().Construct(cameraBorder);
+
+        return tnt;
+    }
 
     public GameObject CreateSpawner(Vector3 at) => 
         InstantiateRegistered(AssetPath.PathSpawner, at, Quaternion.identity);
@@ -50,11 +70,9 @@ public class GameFactory : IGameFactory
 
     public GameObject CreateEnemyRange(Vector3 at, HeroHealth heroHealth, CameraBorder cameraBorder, CounterBlocks counterBlocks)
     {
-        Vector3 fixRotation = new Vector3(0f, 180f, 0f);
-        GameObject enemyRange = InstantiateRegistered(AssetPath.PathRangeEnemy, at, Quaternion.Euler(fixRotation));
-        EnemyRangeData enemyData = _staticData.ForEnemyRangeByCountBlocks(counterBlocks.CountBlocks);
+        GameObject enemyRange = InstantiateRegistered(AssetPath.PathRangeEnemy, at, Quaternion.identity);
+        EnemyRangeData enemyData = _staticData.ForEnemyRangeByCountBlocks(30);
 
-        enemyRange.GetComponent<EnemyRangeObserver>().Construct(heroHealth.transform, cameraBorder);
         enemyRange.GetComponent<EnemyRangeAttack>().Construct(heroHealth, cameraBorder, this, enemyData.Damage);
         enemyRange.GetComponent<EnemyHealth>().Construct(enemyData.Health);
         enemyRange.GetComponent<EnemyDeath>().Construct(this);
@@ -74,7 +92,8 @@ public class GameFactory : IGameFactory
 
     public void RemoveFromReactionOfHeroDeath(IReactionOfHeroDeath gameObject)
     {
-        ReactionsOfHeroDeath.Remove(gameObject);
+        if(ReactionsOfHeroDeath.Contains(gameObject))
+            ReactionsOfHeroDeath.Remove(gameObject);
     }
 
     public void Cleanup()

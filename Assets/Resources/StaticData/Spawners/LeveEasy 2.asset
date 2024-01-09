@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50e6d753c8eb3340ad2725e6214da41, type: 3}
+  m_Name: LeveEasy 2
+  m_EditorClassIdentifier: 
+  Duration: 4
+  MaxBlocks: 100
+  MinBlocks: 30
+  ExperienceProcent: 0
+  SpawnBonuses:
+  - Type: 0
+    SpawnProcent: 50
+  SpawnObstacles:
+  - Type: 0
+    SpawnProcent: 40
+    DamageMin: 1
+    DamageMax: 1
+    HPMin: 0
+    HPMax: 0
+  - Type: 1
+    SpawnProcent: 40
+    DamageMin: 1
+    DamageMax: 1
+    HPMin: 0
+    HPMax: 0
+  - Type: 5
+    SpawnProcent: 20
+    DamageMin: 1
+    DamageMax: 1
+    HPMin: 0
+    HPMax: 0

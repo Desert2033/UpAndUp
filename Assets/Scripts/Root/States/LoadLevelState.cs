@@ -87,22 +87,26 @@ public class LoadLevelState : IState
         CounterBlocks counterBlocks = hud.GetComponent<CounterBlocks>();
 
         SpawnerBehavior spawnerBehavior = spawner.GetComponent<SpawnerBehavior>();
-        spawnerBehavior.Construct(hero.transform, _gameFactory, counterBlocks);
+        spawnerBehavior.Construct(hero.transform, _gameFactory, _staticDataService, counterBlocks);
     }
 
     private GameObject InitHud(GameObject hero)
     {
-        GameObject hud = _gameFactory.CreateHud();
-        CounterBlocks counterBlocks = hud.GetComponent<CounterBlocks>();
-        InputUI inputUI = hud.GetComponent<InputUI>();
+        GameObject hudObject = _gameFactory.CreateHud();
+        Hud hud = hudObject.GetComponent<Hud>();
+        CounterBlocks counterBlocks = hudObject.GetComponent<CounterBlocks>();
+        InputUI inputUI = hudObject.GetComponent<InputUI>();
         HeroMovingBehaviour heroMoving = hero.GetComponent<HeroMovingBehaviour>();
-        HeroLevelChanger heroLevelChanger = hero.GetComponent<HeroLevelChanger>();
+        ExpBank expBank = hero.GetComponent<ExpBank>();
 
+        hud.ExpBar.Construct(expBank);
         counterBlocks.Construct(heroMoving);
+        hud.HealBar.Construct(hero.GetComponent<HealBank>());
+        
+        hero.GetComponent<HeroHeal>().Construct(hud.HealButton);
 
-        inputUI.LevelUpButton.onClick.AddListener(heroLevelChanger.UpLevel);
         _inputService.SetInputUI(inputUI);
 
-        return hud;
+        return hudObject;
     }
 }

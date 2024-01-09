@@ -7,7 +7,7 @@ public class HeroDeath : MonoBehaviour
     private const float WaitUntilDestroySeconds = 1f;
 
     [SerializeField] private HeroHealth _heroHealth;
-    [SerializeField] private HeroTakeDamageAnimation _heroDamageAnimation;
+    [SerializeField] private TakeDamageAnimation _heroDamageAnimation;
     [SerializeField] private HeroAnimator _heroAnimator;
     [SerializeField] private BoxCollider _boxCollider;
 

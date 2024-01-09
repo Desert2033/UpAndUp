@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class EnemyRangeAttack : MonoBehaviour, IReactionOfHeroDeath
 {
+    [SerializeField] private Animator _bowAnimator;
+
     private EnemyRangeAnimator _enemyAnimator;
     private HeroHealth _heroHealth;
     private CameraBorder _cameraBorder;
     private IGameFactory _gameFactory;
     private Timer _cooldown;
-    private float _damage = 1; 
+    private float _damage = 1;
     private float _duration = 1.5f;
     private float _offsetY;
 
@@ -17,23 +19,26 @@ public class EnemyRangeAttack : MonoBehaviour, IReactionOfHeroDeath
         _cameraBorder = cameraBorder;
         _gameFactory = gameFactory;
         _damage = damage;
-        _cooldown = new Timer(_duration);
         _offsetY = Constants.EnemyRangeOffsetToCenterY;
     }
 
     private void Start()
     {
         _enemyAnimator = GetComponent<EnemyRangeAnimator>();
+        _cooldown = new Timer(_duration);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        _cooldown.Tick(Time.deltaTime);
-
-        if (CanAttack())
+        if (_heroHealth != null) 
         {
-            Attack();
-            _cooldown.Restart();
+            _cooldown.Tick(Time.deltaTime);
+
+            if (CanAttack())
+            {
+                Attack();
+                _cooldown.Restart();
+            }
         }
     }
 
@@ -41,6 +46,12 @@ public class EnemyRangeAttack : MonoBehaviour, IReactionOfHeroDeath
     {
         SpawnBullet();
         _enemyAnimator.OnAttack();
+        _bowAnimator.SetTrigger("BowAttack");
+    }
+
+    private void OnDestroy()
+    {
+        _gameFactory.RemoveFromReactionOfHeroDeath(this);
     }
 
     public void OnHeroDie()
@@ -51,10 +62,10 @@ public class EnemyRangeAttack : MonoBehaviour, IReactionOfHeroDeath
     private bool CanAttack() =>
         transform.position.y + _offsetY <= _cameraBorder.RightTop.y && _cooldown.CurrentDuretion <= 0f;
 
-    private void SpawnBullet() => 
-        _gameFactory.CreateBullet(transform.position, 
-            _heroHealth.transform.position - transform.position, 
-            _damage, 
-            AssetPath.PathEnemyBullet,
+    private void SpawnBullet() =>
+        _gameFactory.CreateBullet(_bowAnimator.transform.position,
+            _heroHealth.transform.position - transform.position,
+            _damage,
+            AssetPath.PathBullet,
             _heroHealth.transform);
 }

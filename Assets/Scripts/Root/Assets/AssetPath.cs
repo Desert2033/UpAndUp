@@ -3,10 +3,14 @@
     public const string PathPlayer = "Prefabs/Hero/Hero";
     public const string PathBlockEarth = "Prefabs/Block earth/EarthGrass";
     public const string PathHud = "Prefabs/UI/Hud";
-    public const string PathTNT = "Prefabs/Obstacles/TNT/TNT 1 Level";
-    public const string PathRangeEnemy = "Prefabs/Enemies/EnemyRange";
-    public const string PathEnemyBullet = "Prefabs/Enemies/Bullet";
+    public const string PathTNT = "Prefabs/Obstacles/TNT/TNT";
+    public const string PathTNTMoveEasy = "Prefabs/Obstacles/TNT/TNTMoveEasy";
+    public const string PathTNTMoveHard = "Prefabs/Obstacles/TNT/TNTMoveHard";
+    public const string PathTNTMoveDown = "Prefabs/Obstacles/TNT/TNTMoveDown";
+    public const string PathRangeEnemy = "Prefabs/Enemies/Skeleton/Skeleton";
     public const string PathSpawner = "Prefabs/Spawner/Spawner";
     public const string PathRestartMenu = "Prefabs/UI/RestartMenu_canvas";
-    public const string PathHeroBullet = "Prefabs/Hero/Weapons/Bow/BulletHero";
+    public const string PathBullet = "Prefabs/Arrow/Arrow";
+    public const string PathExperience = "Prefabs/PositiveEffects/Experience";
+    public const string PathHeal= "Prefabs/PositiveEffects/Heal";
 }

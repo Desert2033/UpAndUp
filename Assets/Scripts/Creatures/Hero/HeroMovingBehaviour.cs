@@ -63,14 +63,14 @@ public class HeroMovingBehaviour : MonoBehaviour, ICoroutineRunner, IReactionOfH
                 OnMoveUp?.Invoke();
                 break;
             default:
-                _heroMoveSide.Move(direction, blockPosition.x);
+               _heroMoveSide.Move(direction, blockPosition);
                 break;
         }
     }
 
     private bool CanMove(Directions direction) =>
-        _cooldownMove.CurrentDuretion <= 0f
-        || _prevDirection != direction
+        (_cooldownMove.CurrentDuretion <= 0f
+        || _prevDirection != direction)
         && !_heroMoveSide.IsMoving
         && !_heroJump.IsMovingUp;
 }

@@ -15,6 +15,7 @@ public class HeroLevelChanger : MonoBehaviour
     [SerializeField] private GameObject _legLeft;
     [SerializeField] private HeroHealth _heroHealth;
     [SerializeField] private HeroAttack _heroAttack;
+    [SerializeField] private ExpBank _expBank;
 
     private IStaticDataService _staticDataService;
     private int _currentLevel;
@@ -23,6 +24,16 @@ public class HeroLevelChanger : MonoBehaviour
     {
         _staticDataService = staticDataService;
         _currentLevel = heroLevel;
+    }
+
+    private void OnEnable()
+    {
+        _expBank.OnExpMax += UpLevel;
+    }
+
+    private void OnDisable()
+    {
+        _expBank.OnExpMax -= UpLevel;
     }
 
     public void UpLevel()

@@ -8,13 +8,15 @@ public class EnemyRangeObserver : MonoBehaviour, IReactionOfHeroDeath
 
     private Transform _heroTransform;
     private CameraBorder _cameraBorder;
+    private IGameFactory _gameFactory;
     private float _speed = 2f;
     private float _offsetY;
 
-    public void Construct(Transform heroTransform, CameraBorder cameraBorder)
+    public void Construct(Transform heroTransform, CameraBorder cameraBorder, IGameFactory gameFactory)
     {
         _heroTransform = heroTransform;
         _cameraBorder = cameraBorder;
+        _gameFactory = gameFactory;
         _offsetY = Constants.EnemyRangeOffsetToCenterY;
     }
 
@@ -45,6 +47,11 @@ public class EnemyRangeObserver : MonoBehaviour, IReactionOfHeroDeath
 
     private float RotationY(Vector3 direction) =>
         direction.x * DeltaX + ConstRotationY;
+
+    private void OnDestroy()
+    {
+        _gameFactory.RemoveFromReactionOfHeroDeath(this);
+    }
 
     public void OnHeroDie()
     {

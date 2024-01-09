@@ -18,4 +18,9 @@ public interface IGameFactory : IService
     public GameObject CreateSpawner(Vector3 at);
     public GameObject CreateHud();
     public GameObject CreateRestartMenu();
+    public GameObject CreateTNTMoveEasy(Vector3 at);
+    public GameObject CreateTNTMoveHard(Vector3 at);
+    public GameObject CreateTNTMoveDown(Vector3 at, CameraBorder cameraBorder);
+    public GameObject CreateExperience(Vector3 at);
+    public GameObject CreateHeal(Vector3 at);
 }

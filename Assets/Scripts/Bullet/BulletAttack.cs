@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class BulletAttack : MonoBehaviour, IReactionOfHeroDeath
 {
+    private const float LifeTime = 1.5f;
+
     private float _damage;
     private Transform _targetTransform;
     private IGameFactory _gameFactory;
+    private Timer _lifeTime;
 
     public void Construct(float damage, Transform targetTransform, IGameFactory gameFactory)
     {
@@ -13,11 +16,24 @@ public class BulletAttack : MonoBehaviour, IReactionOfHeroDeath
         _gameFactory = gameFactory;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.transform == _targetTransform)
+        _lifeTime = new Timer(LifeTime);
+    }
+
+    private void Update()
+    {
+        _lifeTime.Tick(Time.deltaTime);
+
+        if (_lifeTime.CurrentDuretion <= 0)
+            Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform == _targetTransform)
         {
-            other.GetComponent<IHealth>().TakeDamage(_damage);
+            collision.transform.GetComponent<IHealth>().TakeDamage(_damage);
             Destroy(gameObject);
         }
     }

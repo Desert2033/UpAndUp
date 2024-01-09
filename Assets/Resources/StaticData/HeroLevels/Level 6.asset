@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Level 6
   m_EditorClassIdentifier: 
   Level: 6
-  Hp: 30
-  Damage: 30
+  Hp: 7
+  Damage: 6
   ColorArmor: {r: 0, g: 0, b: 0, a: 0}
   WearArmorLegs: 1
   WearArmorHands: 1
